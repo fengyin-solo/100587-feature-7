@@ -35,3 +35,54 @@ body { margin: 0; background: #f6f8fb; color: #1f2937; }
 .error-text { color: #b42318; }
 .status-legend { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 10px; font-size: 12px; color: var(--muted); }
 .legend-item { background: #eef2f7; border-radius: 999px; padding: 2px 10px; }
+
+/* 泵组开机/停机规矩用到的状态色与超标提示 */
+.muted-text { color: var(--muted); }
+.over-text { color: #b42318; font-weight: 600; }
+.cell-conclusion { max-width: 260px; }
+.status-badge { display: inline-block; border-radius: 999px; padding: 2px 10px; font-size: 12px; white-space: nowrap; }
+.status-待开机 { background: #e2e8f0; color: #334155; }
+.status-运行中 { background: #dcfce7; color: #166534; }
+.status-已停机 { background: #e0e7ff; color: #3730a3; }
+.status-故障停机 { background: #fee4e2; color: #b42318; }
+.status-待开工 { background: #fef3c7; color: #92400e; }
+.status-检修中 { background: #dbeafe; color: #1e40af; }
+.status-已完工 { background: #dcfce7; color: #166534; }
+.status-已延期 { background: #f1f5f9; color: #475569; }
+.legend-运行中 { background: #dcfce7; color: #166534; }
+.legend-故障停机 { background: #fee4e2; color: #b42318; }
+.legend-rule { background: #eff6ff; color: #1d4ed8; }
+.row-overrun { background: #fff5f5; }
+.row-overrun td { border-color: #f3c6c2; }
+.row-fault { background: #fff7f6; }
+.cell-over { color: #b42318; font-weight: 700; }
+.cell-over-tip { color: #b42318; font-size: 12px; white-space: nowrap; }
+.stat-card.alert { border-color: #f0a8a0; }
+.stat-card.alert .stat-value { color: #b42318; }
+.link.danger { color: #b42318; }
+
+.lookup-tip { margin: 0 0 10px; padding: 8px 12px; border-radius: 6px; background: #ecfdf3; border: 1px solid #abefc6; color: #067647; font-size: 13px; }
+.lookup-tip.tip-error { background: #fef3f2; border-color: #fda29b; color: #b42318; }
+
+/* 待修清单面板 */
+.todo-panel { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 14px; }
+.todo-title { margin: 0 0 10px; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+.todo-count { font-size: 12px; background: #fef3c7; color: #92400e; border-radius: 999px; padding: 1px 10px; }
+.todo-empty { color: var(--muted); font-size: 13px; margin: 4px 0; }
+.todo-table th, .todo-table td { font-size: 12px; }
+.tag { display: inline-block; border-radius: 4px; padding: 1px 8px; font-size: 12px; }
+.tag-danger { background: #fee4e2; color: #b42318; }
+.tag-info { background: #e0e7ff; color: #3730a3; }
+
+/* 弹窗表单 */
+.modal-mask { position: fixed; inset: 0; background: rgba(16, 24, 40, 0.45); display: flex; align-items: center; justify-content: center; z-index: 50; }
+.modal { background: #fff; border-radius: 10px; width: 560px; max-width: calc(100vw - 32px); max-height: calc(100vh - 48px); overflow-y: auto; padding: 18px 20px; }
+.modal-title { margin: 0 0 12px; font-size: 16px; }
+.modal-body { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+.modal-line { grid-column: 1 / -1; margin: 0; font-size: 13px; line-height: 1.6; }
+.form-item { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); }
+.form-item:last-of-type { }
+.form-item input, .form-item select, .form-item textarea { font-size: 13px; color: #1f2937; border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; font-family: inherit; }
+.form-item textarea { grid-column: 1 / -1; resize: vertical; }
+.dialog-error { grid-column: 1 / -1; margin: 4px 0 0; }
+.modal-actions { grid-column: 1 / -1; display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }

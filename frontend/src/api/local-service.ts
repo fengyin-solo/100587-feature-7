@@ -43,11 +43,30 @@ export function runAction(key: string, id: number, action: string): ActionResult
   if (current === target) {
     return { ok: false, message: `${meta.entity}已经是「${target}」，不用重复操作` }
   }
-  const lastStatus = meta.statuses[meta.statuses.length - 1]
+  // 状态只能往前顺走一格：配了状态机就只认当前状态名下允许的动作，跳着改一律打回。
+  if (meta.transitions) {
+    const allowed = meta.transitions[current]
+    if (!allowed || allowed.length === 0) {
+      return {
+        ok: false,
+        message: `${meta.entity}当前为「${current}」，已是末段状态，不能再执行「${action}」`,
+      }
+    }
+    if (!allowed.includes(action)) {
+      const currentStep = meta.statuses.indexOf(current)
+      const targetStep = meta.statuses.indexOf(target)
+      const hint =
+        currentStep >= 0 && targetStep === currentStep + 2
+          ? `状态只能顺走：「${current}」之后不能直接跳到「${target}」`
+          : `「${current}」状态下不允许执行「${action}」`
+      return { ok: false, message: hint }
+    }
+  }
+  const isFinal = meta.finalStatuses?.includes(target) ?? target === meta.statuses[meta.statuses.length - 1]
   const updated: EntryRow = {
     ...rows[index],
     status: target,
-    pending: target !== lastStatus,
+    pending: !isFinal,
     abnormal: NEGATIVE_ACTIONS.some((verb) => action.startsWith(verb)),
   }
   const next = [...rows]
